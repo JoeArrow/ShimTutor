@@ -1,23 +1,23 @@
 ﻿
 namespace ShimTutor
 {
-    public static class SystemToTest
+    public class SystemToTest
     {
-        public static string MethodToTest(string input)
+        public string MethodToTest(string input)
         {
             return $"{Capitalize(input)}_{LowerCase(input)}";
         }
 
         // ------------------------------------------------
 
-        private static string Capitalize(string input)
+        private string Capitalize(string input)
         {
             return input.ToUpper();
         }
 
         // ------------------------------------------------
 
-        private static string LowerCase(string input)
+        private string LowerCase(string input)
         {
             return input.ToLower();
         }

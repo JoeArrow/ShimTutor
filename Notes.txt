@@ -1,0 +1,17 @@
+Documentation:
+    https://docs.microsoft.com/en-us/visualstudio/test/isolating-code-under-test-with-microsoft-fakes?view=vs-2019
+    https://docs.microsoft.com/en-us/visualstudio/test/using-shims-to-isolate-your-application-from-other-assemblies-for-unit-testing?view=vs-2019
+    https://docs.microsoft.com/en-us/visualstudio/test/using-stubs-to-isolate-parts-of-your-application-from-each-other-for-unit-testing?view=vs-2019
+
+Dependency Injection is essential:
+    https://en.wikipedia.org/wiki/Dependency_injection
+
+Add Fakes Assembly:
+
+    In Solution Explorer, expand the test project's reference list. 
+    If you are working in Visual Basic, you must choose Show All Files in order to see the reference list.
+
+    Select the reference to the assembly in which the interface (for example IStockFeed) is defined. 
+    On the shortcut menu of this reference, choose Add Fakes Assembly.
+
+    Rebuild the solution.

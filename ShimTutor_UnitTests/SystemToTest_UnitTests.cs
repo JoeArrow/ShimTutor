@@ -17,18 +17,27 @@ namespace ShimTutor_UnitTests
         [DataRow("Input String", "input string_INPUT STRING")]
         public void MethodToTest_Shimed_ShimTutor(string input, string expected)
         {
+            // --------------------------------------------
+            // All Shims must be used within a ShimsContext
+            // Otherwise, there is a possibility of leaving
+            // the Shim(s) in place.
+            //
+            // There is no corresponding StubsContext.
+
             using(ShimsContext.Create())
             {
                 // -------
                 // Arrange
 
-                ShimTutor.Fakes.ShimSystemToTest.CapitalizeString = (string inp) => { return inp.ToLower(); };
-                ShimTutor.Fakes.ShimSystemToTest.LowerCaseString = (string imp) => { return imp.ToUpper(); };
-                
+                var sut = new SystemToTest();
+
+                ShimTutor.Fakes.ShimSystemToTest.AllInstances.CapitalizeString = (SystemToTest s, string inp) => { return inp.ToLower(); };
+                ShimTutor.Fakes.ShimSystemToTest.AllInstances.LowerCaseString = (SystemToTest s, string imp) => { return imp.ToUpper(); };
+
                 // ---
                 // Act
 
-                var resp = SystemToTest.MethodToTest(input);
+                var resp = sut.MethodToTest(input);
 
                 // ---
                 // Log
@@ -48,10 +57,15 @@ namespace ShimTutor_UnitTests
         [DataRow("Input String", "INPUT STRING_input string")]
         public void MethodToTest_Unshimed_ShimTutor(string input, string expected)
         {
+            // -------
+            // Arrange
+
+            var sut = new SystemToTest();
+
             // ---
             // Act
 
-            var resp = SystemToTest.MethodToTest(input);
+            var resp = sut.MethodToTest(input);
 
             // ------
             // Assert
